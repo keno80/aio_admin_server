@@ -15,6 +15,35 @@ export default (appInfo: EggAppInfo) => {
     sourceUrl: `https://github.com/eggjs/examples/tree/master/${appInfo.name}`,
   };
 
+  config.mysql = {
+    client: {
+      host: 'localhost',
+      port: '3306',
+      user: 'root',
+      password: 'password',
+      database: 'blog',
+    },
+    app: true,
+    agent: false,
+  };
+
+  config.security = {
+    csrf: {
+      enable: false,
+      ignoreJSON: true,
+    },
+    domainWhiteList: [ '*' ],
+  };
+
+  config.cors = {
+    origin: '*',
+    allowMethods: 'GET,HEAD,PUT,POST,DELETE,PATCH',
+  };
+
+  config.jwt = {
+    secret: 'secret',
+  };
+
   // the return config will combines to EggAppConfig
   return {
     ...config,
